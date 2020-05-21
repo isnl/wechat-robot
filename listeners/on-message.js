@@ -3,7 +3,7 @@
  * @Description:  处理用户消息
  * @Date: 2020-05-20 22:36:28
  * @Last Modified by: Peanut
- * @Last Modified time: 2020-05-21 14:06:47
+ * @Last Modified time: 2020-05-21 23:33:30
  */
 const bot = require("../app.js");
 const { UrlLink } = require("wechaty");
@@ -69,7 +69,7 @@ async function onPeopleMessage(msg) {
     await msg.say(fileBox);
   } else if (content === "技术交流群" || parseInt(content) === 1) {
     const webRoom = await bot.Room.find({
-      topic: config.WEBROOM,
+      topic: config.WEBROOM
     });
     if (webRoom) {
       try {
@@ -96,9 +96,12 @@ async function onPeopleMessage(msg) {
       description: "来了来了，专为程序员量身定做的导航站来了！",
       thumbnailUrl: "https://www.iiter.cn/_nuxt/img/f996b71.png",
       title: "艾特网 - 程序员专用导航站",
-      url: "https://iiter.cn",
+      url: "https://iiter.cn"
     });
     await msg.say(urlLink);
+  } else if (content === "客服") {
+    const contactCard = await bot.Contact.find({ alias: config.MYSELF }); // change 'lijiarui' to any of the room member
+    await msg.say(contactCard);
   } else {
     const noUtils = await onUtilsMessage(msg);
     if (noUtils) {
@@ -122,6 +125,29 @@ async function onWebRoomMessage(msg) {
       const res = await superagent.getEnglishOne();
       await delay(200);
       await msg.say(`en：${res.en}<br><br>zh：${res.zh}`);
+    } else if (typeof content === "string") {
+      const room = msg.room();
+      //获取发消息人
+      const contact = msg.from();
+      const alias = await contact.alias();
+      //如果是好友且备注是config.MYSELF  才执行操作
+      if (contact.friend() && alias === config.MYSELF) {
+        // console.log(msg);
+        const delName = content.replace("踢@", "").trim();
+        const delContact = await room.member({ name: delName });
+        await room.del(delContact);
+        await msg.say(delName + "已被移除群聊");
+      }
+      console.log(contact.alias());
+
+      // const contactCard = await bot.Contact.find({ alias: config.MYSELF });
+      // await msg.say(contactCard);
+
+      // @全体用户
+      // const room = msg.room();
+      // const members = await room.memberAll(); // memtion all members in this room
+      // const someMembers = members.slice(0, 3);
+      // await room.say("Hello world!", ...someMembers);
     } else {
       await onUtilsMessage(msg);
     }
@@ -221,7 +247,7 @@ async function onUtilsMessage(msg) {
         "西藏",
         "青海",
         "新疆",
-        "宁夏",
+        "宁夏"
       ];
       let newContent = content.replace("肺炎", "").trim();
       if (config.includes(newContent)) {
