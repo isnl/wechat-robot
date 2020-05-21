@@ -3,9 +3,10 @@
  * @Description:  处理用户消息
  * @Date: 2020-05-20 22:36:28
  * @Last Modified by: Peanut
- * @Last Modified time: 2020-05-20 22:53:47
+ * @Last Modified time: 2020-05-21 14:06:47
  */
 const bot = require("../app.js");
+const { UrlLink } = require("wechaty");
 const path = require("path");
 const { FileBox } = require("file-box");
 const superagent = require("../superagent");
@@ -68,7 +69,7 @@ async function onPeopleMessage(msg) {
     await msg.say(fileBox);
   } else if (content === "技术交流群" || parseInt(content) === 1) {
     const webRoom = await bot.Room.find({
-      topic: config.WEBROOM
+      topic: config.WEBROOM,
     });
     if (webRoom) {
       try {
@@ -90,6 +91,14 @@ async function onPeopleMessage(msg) {
     const { en, zh } = await superagent.getEnglishOne();
     await delay(200);
     await msg.say(`en：${en}<br><br>zh：${zh}`);
+  } else if (content === "艾特网" || content === "导航站") {
+    const urlLink = new UrlLink({
+      description: "来了来了，专为程序员量身定做的导航站来了！",
+      thumbnailUrl: "https://www.iiter.cn/_nuxt/img/f996b71.png",
+      title: "艾特网 - 程序员专用导航站",
+      url: "https://iiter.cn",
+    });
+    await msg.say(urlLink);
   } else {
     const noUtils = await onUtilsMessage(msg);
     if (noUtils) {
@@ -212,7 +221,7 @@ async function onUtilsMessage(msg) {
         "西藏",
         "青海",
         "新疆",
-        "宁夏"
+        "宁夏",
       ];
       let newContent = content.replace("肺炎", "").trim();
       if (config.includes(newContent)) {
