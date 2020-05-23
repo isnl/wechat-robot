@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "一款nodejs版微信机器人，群聊小助手",
   "author": "Peanut <htmlcs@163.com>",
+  "website": "https://iiter.cn",
   "license": "MIT",
   "keywords": [
     "微信机器人",
