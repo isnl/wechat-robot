@@ -3,17 +3,22 @@
  * @Description:  实例化 - 入口文件
  * @Date: 2020-05-19 21:55:04
  * @Last Modified by: Peanut
- * @Last Modified time: 2020-05-21 22:36:22
+ * @Last Modified time: 2020-05-24 00:12:54
  */
 const { Wechaty } = require("wechaty");
 const { PuppetPadplus } = require("wechaty-puppet-padplus");
-const puppet = new PuppetPadplus({
-  token: "puppet_padplus_9b52b76787196f50"
-});
+const config = require("./config");
+//ipad协议
 const bot = new Wechaty({
-  puppet,
+  puppet: new PuppetPadplus({
+    token: config.TOKEN
+  }),
   name: "WeChat-Robot"
 });
+//web协议
+// const bot = new Wechaty({
+//   name: "WeChat-Robot"
+// });
 bot.on("login", "./listeners/on-login.js");
 bot.on("message", "./listeners/on-message");
 bot.on("scan", "./listeners/on-scan");

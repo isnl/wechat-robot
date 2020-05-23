@@ -3,7 +3,7 @@
  * @Description:  处理用户消息
  * @Date: 2020-05-20 22:36:28
  * @Last Modified by: Peanut
- * @Last Modified time: 2020-05-21 23:33:30
+ * @Last Modified time: 2020-05-23 23:20:36
  */
 const bot = require("../app.js");
 const { UrlLink } = require("wechaty");
@@ -14,7 +14,7 @@ const config = require("../config");
 const { colorRGBtoHex, colorHex } = require("../utils");
 
 const allKeywords = `回复序号或关键字获取对应服务
-1.技术交流群
+1.${config.WEBROOM}
 2.毒鸡汤
 3.神回复(略微开车)
 4.英语一句话
@@ -67,7 +67,7 @@ async function onPeopleMessage(msg) {
     await msg.say("我是秦始皇，打钱!!!!!");
     await delay(200);
     await msg.say(fileBox);
-  } else if (content === "技术交流群" || parseInt(content) === 1) {
+  } else if (content === config.WEBROOM || parseInt(content) === 1) {
     const webRoom = await bot.Room.find({
       topic: config.WEBROOM
     });
@@ -92,6 +92,7 @@ async function onPeopleMessage(msg) {
     await delay(200);
     await msg.say(`en：${en}<br><br>zh：${zh}`);
   } else if (content === "艾特网" || content === "导航站") {
+    //发送链接卡片  web版协议不可用。
     const urlLink = new UrlLink({
       description: "来了来了，专为程序员量身定做的导航站来了！",
       thumbnailUrl: "https://www.iiter.cn/_nuxt/img/f996b71.png",
@@ -125,29 +126,24 @@ async function onWebRoomMessage(msg) {
       const res = await superagent.getEnglishOne();
       await delay(200);
       await msg.say(`en：${res.en}<br><br>zh：${res.zh}`);
-    } else if (typeof content === "string") {
+    } else if (content.includes("踢@")) {
+      // 踢人功能  群里发送  踢@某某某  即可
       const room = msg.room();
       //获取发消息人
       const contact = msg.from();
       const alias = await contact.alias();
-      //如果是好友且备注是config.MYSELF  才执行操作
+      //如果是机器人好友且备注是自己的大号备注  才执行踢人操作
       if (contact.friend() && alias === config.MYSELF) {
-        // console.log(msg);
         const delName = content.replace("踢@", "").trim();
         const delContact = await room.member({ name: delName });
         await room.del(delContact);
-        await msg.say(delName + "已被移除群聊");
+        await msg.say(delName + "已被移除群聊。且聊且珍惜啊！");
       }
-      console.log(contact.alias());
-
-      // const contactCard = await bot.Contact.find({ alias: config.MYSELF });
-      // await msg.say(contactCard);
-
-      // @全体用户
+      // @用户
       // const room = msg.room();
-      // const members = await room.memberAll(); // memtion all members in this room
+      // const members = await room.memberAll(); //获取所有群成员
       // const someMembers = members.slice(0, 3);
-      // await room.say("Hello world!", ...someMembers);
+      // await room.say("Hello world!", ...someMembers); //@这仨人  并说 hello world
     } else {
       await onUtilsMessage(msg);
     }
