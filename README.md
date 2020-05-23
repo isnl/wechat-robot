@@ -1,6 +1,6 @@
 ### nodejs 结合 wechaty 实现你的微信群聊机器人二(iPad 协议)
 
-> 开源地址： [https://github.com/isnl/wechat-robot/tree/pad](https://github.com/isnl/wechat-robot/tree/pad)
+> 开源地址： [https://github.com/isnl/wechat-robot-ipad](https://github.com/isnl/wechat-robot-ipad)
 
 #### 前言
 
@@ -77,7 +77,7 @@ But ！！！
 
 完事之后就加好友，获取 Token。
 
-克隆仓库代码 [https://github.com/isnl/wechat-robot/tree/pad](https://github.com/isnl/wechat-robot/tree/pad)
+克隆仓库代码 [https://github.com/isnl/wechat-robot-ipad](https://github.com/isnl/wechat-robot-ipad)
 
 安装依赖必须的吧？
 
