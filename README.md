@@ -2,15 +2,13 @@
 
 ### 使用 nodejs + wecharty 打造你的个人微信机器人
 
-**注 1：** 本文需要微信账号能通过 web 端登录验证。
+**注 1：** 本文需要微信账号能通过 web 端登录验证,如果网页版微信无法登陆，请参考如下 `iPad` 协议的开源仓库链接：
+
+[https://github.com/isnl/wechat-robot-ipad](https://github.com/isnl/wechat-robot-ipad)
 
 **注 2：** 从 2017 年 6 月下旬开始，使用基于 web 版微信接入方案存在大概率的被限制登陆的可能性。 主要表现为：无法登陆 Web 微信，但不影响手机等其他平台。 验证是否被限制登陆： [https://wx.qq.com](https://wx.qq.com) 上扫码查看是否能登陆。 更多内容详见：
 
 [Can not login with error message: 当前登录环境异常。为了你的帐号安全，暂时不能登录 web 微信。](https://github.com/Chatie/wechaty/issues/603)
-
-在此基础上开源了 `iPad` 协议的代码仓库，如果网页版微信无法登陆，请参考如下链接：
-
-[https://github.com/isnl/wechat-robot-ipad](https://github.com/isnl/wechat-robot-ipad)
 
 ### 克隆代码
 
