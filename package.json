@@ -27,9 +27,8 @@
     "qrcode-terminal": "^0.12.0",
     "request": "^2.88.0",
     "superagent": "^4.1.0",
-    "wechaty": "^0.38.4",
-    "wechaty-puppet": "^0.24.0",
-    "wechaty-puppet-padplus": "^0.6.3"
+    "wechaty": "^0.60.4",
+    "wechaty-puppet-wechat": "^0.28.1"
   },
   "devDependencies": {
     "@chatie/eslint-config": "^0.6.17",

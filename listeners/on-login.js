@@ -3,26 +3,25 @@
  * @Description:  登录
  * @Date: 2020-05-20 23:21:06
  * @Last Modified by: Peanut
- * @Last Modified time: 2020-05-20 23:21:42
+ * @Last Modified time: 2021-04-19 22:07:28
  */
 const schedule = require("../schedule");
 const config = require("../config");
 const untils = require("../utils");
 const superagent = require("../superagent");
-const bot = require("../app");
 /**
  * @description 您的机器人上线啦
  * @param {} user
  */
-async function onLogin(user) {
+async function onLogin(user,bot) {
   console.log(`贴心小助理${user}登录了`);
   //创建定时发送群消息任务
-  await onRoom();
+  await onRoom(bot);
 }
 /**
  * 9点定时给指定群发送消息
  */
-async function onRoom() {
+async function onRoom(bot) {
   //匹配规则可参考 schedule/index.js
   const time = "0 0 9 * * *";
   schedule.setSchedule(time, async () => {

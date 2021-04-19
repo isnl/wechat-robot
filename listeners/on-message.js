@@ -3,9 +3,8 @@
  * @Description:  处理用户消息
  * @Date: 2020-05-20 22:36:28
  * @Last Modified by: Peanut
- * @Last Modified time: 2020-05-20 22:53:47
+ * @Last Modified time: 2021-04-19 22:02:53
  */
-const bot = require("../app.js");
 const path = require("path");
 const { FileBox } = require("file-box");
 const superagent = require("../superagent");
@@ -32,27 +31,28 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 /**
  * 处理消息
  */
-async function onMessage(msg) {
+async function onMessage(msg, bot) {
   //防止自己和自己对话
   if (msg.self()) return;
   const room = msg.room(); // 是否是群消息
   if (room) {
     //处理群消息
-    await onWebRoomMessage(msg);
+    await onWebRoomMessage(msg, bot);
   } else {
     //处理用户消息  用户消息暂时只处理文本消息。后续考虑其他
+    console.log("bot.Message", bot.Message);
     const isText = msg.type() === bot.Message.Type.Text;
     if (isText) {
-      await onPeopleMessage(msg);
+      await onPeopleMessage(msg, bot);
     }
   }
 }
 /**
  * 处理用户消息
  */
-async function onPeopleMessage(msg) {
+async function onPeopleMessage(msg, bot) {
   //获取发消息人
-  const contact = msg.from();
+  const contact = msg.talker();
   //对config配置文件中 ignore的用户消息不必处理
   if (config.IGNORE.includes(contact.payload.name)) return;
   let content = msg.text().trim(); // 消息内容 使用trim()去除前后空格
@@ -91,7 +91,7 @@ async function onPeopleMessage(msg) {
     await delay(200);
     await msg.say(`en：${en}<br><br>zh：${zh}`);
   } else {
-    const noUtils = await onUtilsMessage(msg);
+    const noUtils = await onUtilsMessage(msg, bot);
     if (noUtils) {
       await delay(200);
       await msg.say(allKeywords);
@@ -101,7 +101,7 @@ async function onPeopleMessage(msg) {
 /**
  * 处理群消息
  */
-async function onWebRoomMessage(msg) {
+async function onWebRoomMessage(msg, bot) {
   const isText = msg.type() === bot.Message.Type.Text;
   if (isText) {
     const content = msg.text().trim(); // 消息内容
@@ -114,7 +114,7 @@ async function onWebRoomMessage(msg) {
       await delay(200);
       await msg.say(`en：${res.en}<br><br>zh：${res.zh}`);
     } else {
-      await onUtilsMessage(msg);
+      await onUtilsMessage(msg, bot);
     }
   }
 }
@@ -122,8 +122,8 @@ async function onWebRoomMessage(msg) {
 /**
  * utils消息处理
  */
-async function onUtilsMessage(msg) {
-  const contact = msg.from(); // 发消息人
+async function onUtilsMessage(msg, bot) {
+  const contact = msg.talker(); // 发消息人
   const isText = msg.type() === bot.Message.Type.Text;
   if (isText) {
     let content = msg.text().trim(); // 消息内容
