@@ -18,7 +18,7 @@
 ### 克隆代码
 
 ```bash
-git clone git@github.com:isnl/wechat-robot.git
+git clone https://github.com/isnl/wechat-robot.git
 ```
 
 ### 目录结构
