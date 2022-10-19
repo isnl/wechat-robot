@@ -2,9 +2,9 @@
 
 [![Powered by Wechaty](https://img.shields.io/badge/Powered%20By-Wechaty-green.svg)](https://github.com/chatie/wechaty) [![Wechaty开源激励计划](https://img.shields.io/badge/Wechaty-开源激励计划-green.svg)](https://github.com/juzibot/Welcome/wiki/Everything-about-Wechaty)
 
-[2022-07-26：UOS协议又双叒叕可以使用了！！！](https://github.com/wechaty/puppet-wechat/pull/206)
+[2022-07-26：UOS 协议又双叒叕可以使用了！！！](https://github.com/wechaty/puppet-wechat/pull/206)
 
-~~好消息，web端协议可以使用啦！！！~~
+~~好消息，web 端协议可以使用啦！！！~~
 
 ~~[重磅：使用 UOS 微信桌面版协议登录，wechaty 免费版 web 协议重放荣光](https://wechaty.js.org/2021/04/13/wechaty-uos-web/)~~
 
@@ -16,9 +16,11 @@
 
 ~~[Can not login with error message: 当前登录环境异常。为了你的帐号安全，暂时不能登录 web 微信。](https://github.com/Chatie/wechaty/issues/603)~~
 
-### ！！！需要注意  node版本需要 >= 16！！！
+### ！！！注意事项 ！！！
 
-
+- node 版本需要 >= 16  
+- 由于 windows 自带终端不支持部分`bash命令`，因此 windows 用户不要使用自带终端：`cmd` 或者 `powershell`。这里推荐 `Git bash` 或者第三方命令行工具 `cmder` ，都是不错的选择  
+- 部分依赖安装不上的问题，建议使用国内源或 `cnpm` 安装依赖  
 
 ### 克隆代码
 
