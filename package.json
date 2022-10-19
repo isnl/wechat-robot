@@ -27,8 +27,8 @@
     "qrcode-terminal": "^0.12.0",
     "request": "^2.88.0",
     "superagent": "^4.1.0",
-    "wechaty": "^0.60.4",
-    "wechaty-puppet-wechat": "^0.28.1"
+    "wechaty": "^1.20.2",
+    "wechaty-puppet-wechat": "^1.18.4"
   },
   "devDependencies": {
     "@chatie/eslint-config": "^0.6.17",
@@ -36,9 +36,7 @@
     "@chatie/tsconfig": "^0.6.1",
     "check-node-version": "^3.2.0"
   },
-  "git": {
-    "scripts": {
-      "pre-push": "npx git-scripts-pre-push"
-    }
+  "volta": {
+    "node": "16.18.0"
   }
 }

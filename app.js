@@ -2,21 +2,23 @@
  * @Author: Peanut
  * @Description:  实例化 - 入口文件
  * @Date: 2020-05-19 21:55:04
- * @Last Modified by: Peanut
- * @Last Modified time: 2021-04-19 22:09:09
+ * @Last Modified by: Peanut.ZhangHuan
+ * @Last Modified time: 2022-10-19 09:17:49
  */
-const { Wechaty } = require("wechaty");
-const name = "wechat-puppet-wechat";
+const { WechatyBuilder } = require("wechaty");
 
 const onScan = require("./listeners/on-scan.js");
 const onLogin = require("./listeners/on-login.js");
 const onMessage = require("./listeners/on-message.js");
 const onFriendship = require("./listeners/on-friendship.js");
 
-const bot = new Wechaty({
-  name
+const bot = WechatyBuilder.build({
+  name: "wechat-bot",
+  puppet: "wechaty-puppet-wechat",
+  puppetOptions: {
+    uos: true,
+  },
 });
-
 bot.on("login", async user => {
   onLogin(user, bot);
 });

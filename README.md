@@ -2,10 +2,11 @@
 
 [![Powered by Wechaty](https://img.shields.io/badge/Powered%20By-Wechaty-green.svg)](https://github.com/chatie/wechaty) [![Wechaty开源激励计划](https://img.shields.io/badge/Wechaty-开源激励计划-green.svg)](https://github.com/juzibot/Welcome/wiki/Everything-about-Wechaty)
 
+[2022-07-26：UOS协议又双叒叕可以使用了！！！](https://github.com/wechaty/puppet-wechat/pull/206)
 
-好消息，web端协议可以使用啦！！！
+~~好消息，web端协议可以使用啦！！！~~
 
-[重磅：使用 UOS 微信桌面版协议登录，wechaty 免费版 web 协议重放荣光](https://wechaty.js.org/2021/04/13/wechaty-uos-web/)
+~~[重磅：使用 UOS 微信桌面版协议登录，wechaty 免费版 web 协议重放荣光](https://wechaty.js.org/2021/04/13/wechaty-uos-web/)~~
 
 ~~**注 1：** 本文需要微信账号能通过 web 端登录验证,如果网页版微信无法登陆，请参考如下 `iPad` 协议的开源仓库链接：~~
 
@@ -15,10 +16,14 @@
 
 ~~[Can not login with error message: 当前登录环境异常。为了你的帐号安全，暂时不能登录 web 微信。](https://github.com/Chatie/wechaty/issues/603)~~
 
+### ！！！需要注意  node版本需要 >= 16！！！
+
+
+
 ### 克隆代码
 
 ```bash
-git clone git@github.com:isnl/wechat-robot.git
+git clone https://github.com/isnl/wechat-robot.git
 ```
 
 ### 目录结构
